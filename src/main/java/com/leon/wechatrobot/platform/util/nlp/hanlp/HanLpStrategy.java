@@ -2,13 +2,16 @@ package com.leon.wechatrobot.platform.util.nlp.hanlp;
 
 import com.leon.wechatrobot.platform.util.nlp.SegmentStrategy;
 
+import java.util.Vector;
+
 /**
  * Created on 05/11/2017.
  *
  * @author Xiaolei-Peng
  */
 public class HanLpStrategy implements SegmentStrategy{
-    public double computeSimilarity(String sentence1, String sentence2) {
-        return 0.0;
+
+    public Vector<String> segmentWord(String sentence) {
+        return null;
     }
 }

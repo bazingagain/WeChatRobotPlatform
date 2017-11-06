@@ -1,10 +1,12 @@
 package com.leon.wechatrobot.platform.util.nlp;
 
+import java.util.Vector;
+
 /**
  * Created on 05/11/2017.
  *
  * @author Xiaolei-Peng
  */
 public interface SegmentStrategy {
-    double computeSimilarity(String sentence1, String sentence2);
+    Vector<String> segmentWord(String sentence);
 }

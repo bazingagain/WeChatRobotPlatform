@@ -3,6 +3,7 @@ package com.leon.wechatrobot.platform.service.impl;
 import com.leon.wechatrobot.platform.service.QuestionAndAnswerService;
 import com.leon.wechatrobot.platform.util.file.FileUtil;
 import com.leon.wechatrobot.platform.util.nlp.IKAnalyzer.IKAnalyzerStrategy;
+import com.leon.wechatrobot.platform.util.nlp.common.SimilarityUtil;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class QuestionAndAnswerServiceImpl implements QuestionAndAnswerService {
             Iterator it = FileUtil.publicReply.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry entry = (Map.Entry) it.next();
-                double similarity = strategy.computeSimilarity(inputQuestion, (String) entry.getKey());
+                double similarity = SimilarityUtil.consinSimilarity(inputQuestion, (String) entry.getKey(), strategy);
                 if (similarity > boost) {
                     boost = similarity;
                     answer = (String) entry.getValue();
