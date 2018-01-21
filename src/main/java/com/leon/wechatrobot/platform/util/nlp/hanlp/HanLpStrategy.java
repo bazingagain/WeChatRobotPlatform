@@ -5,6 +5,7 @@ import com.hankcs.hanlp.mining.word2vec.Word2VecTrainer;
 import com.hankcs.hanlp.mining.word2vec.WordVectorModel;
 import com.hankcs.hanlp.seg.common.Term;
 import com.hankcs.hanlp.tokenizer.StandardTokenizer;
+import com.leon.wechatrobot.platform.util.file.FileUtil;
 
 import java.util.List;
 import java.util.Vector;
@@ -34,6 +35,17 @@ public class HanLpStrategy {
         WordVectorModel wordVectorModel = trainerBuilder.train("data/msr_training.utf8.txt", "data/msr_vectors.bin");
         wordVectorModel.nearest("中国");
         return null;
+    }
+
+    public static void main(String[] args) {
+
+//        List<String> list = new HanLpStrategy().getKeyword(FileUtil.readFiles("data/test/三体全集.txt"), 50);
+//        System.out.println(list);
+        HanLP.Config.ShowTermNature = false;
+        HanLP.Config.CoreStopWordDictionaryPath = "/Volumes/hdd/code/java-workspace/WeChatRobotPlatform/" + HanLP.Config.CoreStopWordDictionaryPath;
+        System.out.println(HanLP.Config.CoreStopWordDictionaryPath);
+        System.out.println(HanLP.segment("你好归齐，欢迎使用HanLP汉语处理包！"));
+
     }
 
 }
