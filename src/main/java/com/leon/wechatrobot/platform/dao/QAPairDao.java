@@ -12,17 +12,9 @@ import java.util.List;
  */
 @Repository
 public interface QAPairDao {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(QAPairBean record);
+    QAPairBean getQAPairById(Integer id);
 
-    int insertSelective(QAPairBean record);
+    List<QAPairBean> listQAPairByCategory(String category);
 
-    QAPairBean getByPrimaryKey(Integer id);
-
-    List<QAPairBean> listByPrimaryKeys(List<Integer> ids);
-
-    int updateByPrimaryKeySelective(QAPairBean record);
-
-    int updateByPrimaryKey(QAPairBean record);
 }

@@ -43,9 +43,8 @@ public class HanLpStrategy {
 //        System.out.println(list);
         HanLP.Config.ShowTermNature = false;
         HanLP.Config.CoreStopWordDictionaryPath = "/Volumes/hdd/code/java-workspace/WeChatRobotPlatform/" + HanLP.Config.CoreStopWordDictionaryPath;
-        System.out.println(HanLP.Config.CoreStopWordDictionaryPath);
+//        System.out.println(HanLP.Config.CoreStopWordDictionaryPath);
         System.out.println(HanLP.segment("你好归齐，欢迎使用HanLP汉语处理包！"));
-
     }
 
 }

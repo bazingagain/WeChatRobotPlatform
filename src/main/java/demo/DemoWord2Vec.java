@@ -1,5 +1,6 @@
 package demo;
 
+import com.hankcs.hanlp.mining.word2vec.DocVectorModel;
 import com.hankcs.hanlp.mining.word2vec.WordVectorModel;
 import com.leon.wechatrobot.platform.util.common.TrainUtil;
 
@@ -16,8 +17,13 @@ public class DemoWord2Vec {
     public static void main(String[] args) throws IOException
     {
         WordVectorModel wordVectorModel = TrainUtil.trainOrLoadWord2VecModel();
+        DocVectorModel docVectorModel = TrainUtil.trainOrLoadDoc2VecModel();
 
         printNearest("人工智能", wordVectorModel);
+        System.out.println(wordVectorModel.similarity("山东", "江苏"));
+        System.out.println(wordVectorModel.similarity("山东", "上班"));
+
+        System.out.println(docVectorModel.similarity("山西副省长贪污腐败开庭", "陕西村干部受贿违纪"));
 
     }
 
@@ -29,5 +35,7 @@ public class DemoWord2Vec {
             System.out.printf("%50s\t\t%f\n", entry.getKey(), entry.getValue());
         }
     }
+
+
 
 }

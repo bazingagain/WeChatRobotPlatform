@@ -2,6 +2,9 @@ package com.leon.wechatrobot.platform.service.impl;
 
 import com.hankcs.hanlp.HanLP;
 import com.hankcs.hanlp.classification.classifiers.IClassifier;
+import com.hankcs.hanlp.seg.common.Term;
+import com.hankcs.hanlp.tokenizer.NotionalTokenizer;
+import com.hankcs.hanlp.tokenizer.StandardTokenizer;
 import com.leon.wechatrobot.platform.service.QuestionService;
 import com.leon.wechatrobot.platform.util.common.TrainUtil;
 
@@ -41,5 +44,14 @@ public class QuestionServiceImpl implements QuestionService{
     @Override
     public List<String> getAllQuestionCategory() {
         return null;
+    }
+
+    @Override
+    public List<Term> segmentQuestion(String question, boolean useStopWord) {
+        if (useStopWord) {
+            return NotionalTokenizer.segment(question);
+        } else {
+            return StandardTokenizer.segment(question);
+        }
     }
 }

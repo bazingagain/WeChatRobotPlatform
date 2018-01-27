@@ -15,12 +15,14 @@ import java.io.IOException;
  * @author Xiaolei-Peng
  */
 public class TrainUtil {
-    private static final String TRAIN_WORD2VEC_FILE_NAME = "data/train/搜狗文本分类语料库已分词.txt";
     private static final String TRAIN_CLASSIFIER_CORPUS_FOLDER = "data/train/搜狗文本分类语料库迷你版";
+    private static final String MODEL_NAIVEBAYES_CLASSIFIER_DATA = "data/model/naivebayesmodel.mod";
 
 //    private static final String MODEL_WORD2VEC_FILE_NAME = "data/model/word2vec.mod";
-    private static final String MODEL_WORD2VEC_FILE_NAME = "data/model/wiki.zh.vec";
-    private static final String MODEL_NAIVEBAYES_CLASSIFIER_DATA = "data/model/naivebayesmodel.mod";
+    private static final String TRAIN_WORD2VEC_FILE_NAME = "data/train/wiki_seg.txt";
+//    private static final String MODEL_WORD2VEC_FILE_NAME = "data/model/wiki1.zh.vec";
+    private static final String MODEL_WORD2VEC_FILE_NAME = "data/model/hanlp-wiki-vec-zh.txt";
+//    private static final String MODEL_WORD2VEC_FILE_NAME = "data/model/hanlp-wiki-vec-zh.txt";
 
 
     /**
@@ -38,6 +40,10 @@ public class TrainUtil {
             return trainerBuilder.train(TRAIN_WORD2VEC_FILE_NAME, MODEL_WORD2VEC_FILE_NAME);
         }
         return new WordVectorModel(MODEL_WORD2VEC_FILE_NAME);
+    }
+
+    public static DocVectorModel trainOrLoadDoc2VecModel() throws IOException{
+        return new DocVectorModel(trainOrLoadWord2VecModel());
     }
 
     /**
@@ -65,4 +71,12 @@ public class TrainUtil {
 //
 //        return new NaiveBayesClassifier(model);
 //    }
+
+    public static void main(String[] args) {
+        try {
+            trainOrLoadWord2VecModel();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

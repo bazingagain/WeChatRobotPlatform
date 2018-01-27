@@ -19,7 +19,7 @@ public class LocalDataServiceImpl implements LocalDataService{
 
     @Override
     public QAPairBean getQAPair(Integer id) {
-        return qaPairDao.getByPrimaryKey(id);
+        return qaPairDao.getQAPairById(id);
     }
 
     @Override
