@@ -32,12 +32,14 @@ public class CandidateAnswerCollection {
     public void showAll() {
         for (CandidateAnswer candidateAnswer : getAllCandidateAnswer()) {
 //            LOG.debug(candidateAnswer.getAnswer() + " " + candidateAnswer.getScore());
+            System.out.println(candidateAnswer.getAnswer() + " " + candidateAnswer.getScore());
         }
     }
 
     public void showTopN(int topN) {
         for (CandidateAnswer candidateAnswer : getTopNCandidateAnswer(topN)) {
 //            LOG.debug(candidateAnswer.getAnswer() + " " + candidateAnswer.getScore());
+            System.out.println(candidateAnswer.getAnswer() + " " + candidateAnswer.getScore());
         }
     }
 

@@ -1,4 +1,4 @@
-package com.leon.wechatrobot.platform.score.evidence;
+package com.leon.wechatrobot.platform.service;
 
 import com.leon.wechatrobot.platform.model.Evidence;
 import com.leon.wechatrobot.platform.model.Question;
@@ -9,7 +9,7 @@ import com.leon.wechatrobot.platform.score.ScoreWeight;
  *
  * @author Xiaolei-Peng
  */
-public interface EvidenceScore {
+public interface EvidenceScoreService {
     /**
      * 对候选答案进行评分 候选答案的分值存储在CandidateAnswer的实例里面
      *

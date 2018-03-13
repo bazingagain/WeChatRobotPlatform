@@ -1,9 +1,10 @@
-package com.leon.wechatrobot.platform.score.answer;
+package com.leon.wechatrobot.platform.service.impl.answerScore;
 
 import com.leon.wechatrobot.platform.model.CandidateAnswerCollection;
 import com.leon.wechatrobot.platform.model.Evidence;
 import com.leon.wechatrobot.platform.model.Question;
 import com.leon.wechatrobot.platform.score.ScoreWeight;
+import com.leon.wechatrobot.platform.service.CandidateAnswerScoreService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,10 @@ import java.util.List;
  *
  * @author Xiaolei-Peng
  */
-public class CombinationCandidateAnswerScore implements CandidateAnswerScore {
+public class CombinationCandidateAnswerScore implements CandidateAnswerScoreService {
 
 //    private static final Logger LOG = LoggerFactory.getLogger(CombinationCandidateAnswerScore.class);
-    private final List<CandidateAnswerScore> candidateAnswerScores = new ArrayList<>();
+    private final List<CandidateAnswerScoreService> candidateAnswerScores = new ArrayList<>();
 
     //TODO  ??
     private ScoreWeight scoreWeight = new ScoreWeight();
@@ -24,7 +25,7 @@ public class CombinationCandidateAnswerScore implements CandidateAnswerScore {
 
     @Override
     public void score(Question question, Evidence evidence, CandidateAnswerCollection candidateAnswerCollection) {
-        for (CandidateAnswerScore candidateAnswerScore : candidateAnswerScores) {
+        for (CandidateAnswerScoreService candidateAnswerScore : candidateAnswerScores) {
             candidateAnswerScore.score(question, evidence, candidateAnswerCollection);
         }
     }
@@ -34,11 +35,11 @@ public class CombinationCandidateAnswerScore implements CandidateAnswerScore {
         this.scoreWeight = scoreWeight;
     }
 
-    public void addCandidateAnswerScore(CandidateAnswerScore candidateAnswerScore) {
+    public void addCandidateAnswerScore(CandidateAnswerScoreService candidateAnswerScore) {
         candidateAnswerScores.add(candidateAnswerScore);
     }
 
-    public void removeCandidateAnswerScore(CandidateAnswerScore candidateAnswerScore) {
+    public void removeCandidateAnswerScore(CandidateAnswerScoreService candidateAnswerScore) {
         candidateAnswerScores.remove(candidateAnswerScore);
     }
 

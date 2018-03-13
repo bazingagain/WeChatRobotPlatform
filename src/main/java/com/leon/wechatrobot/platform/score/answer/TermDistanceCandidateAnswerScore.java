@@ -1,4 +1,4 @@
-package com.leon.wechatrobot.platform.score.answer;
+package com.leon.wechatrobot.platform.service.impl.answerScore;
 
 import com.hankcs.hanlp.seg.common.Term;
 import com.leon.wechatrobot.platform.model.CandidateAnswer;
@@ -6,6 +6,7 @@ import com.leon.wechatrobot.platform.model.CandidateAnswerCollection;
 import com.leon.wechatrobot.platform.model.Evidence;
 import com.leon.wechatrobot.platform.model.Question;
 import com.leon.wechatrobot.platform.score.ScoreWeight;
+import com.leon.wechatrobot.platform.service.CandidateAnswerScoreService;
 import com.leon.wechatrobot.platform.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +18,7 @@ import java.util.List;
  *
  * @author Xiaolei-Peng
  */
-public class TermDistanceCandidateAnswerScore implements CandidateAnswerScore {
+public class TermDistanceCandidateAnswerScore implements CandidateAnswerScoreService {
 
     @Autowired
     private QuestionService questionService;

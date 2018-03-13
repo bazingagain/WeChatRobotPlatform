@@ -1,9 +1,10 @@
-package com.leon.wechatrobot.platform.score.evidence;
+package com.leon.wechatrobot.platform.service.impl.evidenceScore;
 
 import com.hankcs.hanlp.seg.common.Term;
 import com.leon.wechatrobot.platform.model.Evidence;
 import com.leon.wechatrobot.platform.model.Question;
 import com.leon.wechatrobot.platform.score.ScoreWeight;
+import com.leon.wechatrobot.platform.service.EvidenceScoreService;
 import com.leon.wechatrobot.platform.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * @author Xiaolei-Peng
  */
-public class TermMatchEvidenceScore implements EvidenceScore {
+public class TermMatchEvidenceScore implements EvidenceScoreService {
 
     @Autowired
     private QuestionService questionService;
