@@ -1,0 +1,135 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>analyse</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/static/js/layer/layer.js}"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div style="padding: 100px 100px 10px;">
+    <form class="bs-example bs-example-form" role="form">
+        <div class="row" >
+
+            <div class="col-md-6 col-md-offset-3">
+                <div class="input-group">
+                    <input id="question" type="text" class="form-control">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default
+                        dropdown-toggle" data-toggle="dropdown">检索
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#" id="searchFromLocal">本地检索</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#" id="searchFromWeb">网络检索</a>
+                            </li>
+                        </ul>
+                    </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+            <div class="col-md-1 text-right">
+                <button type="button" class="btn btn-success">
+                    <a style="color: white; text-decoration: none" href="/"><span class="glyphicon glyphicon-send"></span> 首页</a>
+                </button>
+            </div>
+        </div><!-- /.row -->
+    </form>
+</div>
+
+<table id="fromlocal" class="table table-bordered" hidden>
+    <caption align="center">FAQ中TOPN答案</caption>
+    <thead>
+    <tr>
+        <th>相似问题</th>
+        <th>相似度</th>
+        <th>所属类别</th>
+        <th>答案</th>
+    </tr>
+    </thead>
+    <tbody id="localTable">
+    </tbody>
+</table>
+
+<table id="fromweb" class="table table-bordered" hidden>
+    <caption align="center">网络证据片段评分</caption>
+    <thead>
+    <tr>
+        <th>来源</th>
+        <th>评分</th>
+        <th>标题</th>
+        <th>答案片段</th>
+    </tr>
+    </thead>
+    <tbody id="webTable">
+    </tbody>
+</table>
+
+</body>
+<script type="text/javascript">
+
+    function isNull( str ){
+        if ( str == "" ) return true;
+        var regu = "^[ ]+$";
+        var re = new RegExp(regu);
+        return re.test(str);
+    }
+
+    $(document).ready(function() {
+
+
+
+        $("#searchFromLocal").click(function () {
+            $("#fromweb").hide();
+            $("#fromlocal").show();
+            var question = $("#question").val();
+            if (isNull(question)) {
+                layer.msg('输入不能为空');
+            } else {
+                $.get("/getTopFromLocal", {question : question}, function (data) {
+                    $("#localTable").html("");
+                    var html = "";
+                    for (var i = 0; i < data.length; i++) {
+                        var tr = "<tr><td>" + data[i].simiQuestion +"</td><td>" +
+                                data[i].similarity +"</td><td>" +
+                                data[i].category +"</td><td>" +
+                                data[i].answer +"</td></tr>";
+                        html += tr;
+                    }
+                    $("#localTable").html(html);
+                })
+            }
+        });
+
+        $("#searchFromWeb").click(function () {
+            $("#fromlocal").hide();
+            $("#fromweb").show();
+            var question = $("#question").val();
+            if (isNull(question)) {
+                layer.msg('输入不能为空');
+            } else {
+                $.get("/getTopFromWeb", {question : question}, function (data) {
+                    console.log(data);
+                    $("#webTable").html("");
+                    var html = "";
+                    for (var i = 0; i < data.length; i++) {
+                        var tr = "<tr><td>" + data[i].source +"</td><td>" +
+                                data[i].score +"</td><td>" +
+                                data[i].title +"</td><td>" +
+                                data[i].snippet +"</td></tr>";
+                        html += tr;
+                    }
+                    $("#webTable").html(html);
+                })
+            }
+        })
+
+
+    });
+</script>
+</html>

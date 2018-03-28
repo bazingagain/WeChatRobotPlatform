@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.leon.wechatrobot.platform.dao.QAPairDao">
+
+  <resultMap id="resultMap" type="questionAnswerPair">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="question" property="question" />
+    <result column="answer" property="answer" />
+    <result column="type" property="type"/>
+    <result column="value" property="value"/>
+    <result column="cluster" property="cluster"/>
+    <result column="category" property="category" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="getQAPairById" parameterType="int" resultMap="resultMap">
+    select id, question, answer, type, value, cluster, category
+    from qa_qapair
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="listQAPairByCategory" parameterType="string" resultType="questionAnswerPair">
+    SELECT *
+    from qa_qapair
+    WHERE category = #{category}
+  </select>
+
+  <select id="listAllQAPair"  resultType="questionAnswerPair">
+    SELECT *
+    from qa_qapair
+  </select>
+
+</mapper>

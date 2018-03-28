@@ -1,0 +1,58 @@
+server:
+  port: 8080
+
+spring:
+    datasource:
+        name: test
+        url: jdbc:mysql://127.0.0.1:3306/qadb?characterEncoding=utf-8
+        username: root
+        password: jl970222whhdgq
+        driver-class-name: com.mysql.jdbc.Driver
+        # 如若使用druid数据源,则需配置如下内容
+        type: com.alibaba.druid.pool.DruidDataSource
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    redis:
+      database: 0
+      host: localhost
+      port: 6379
+    mvc:
+      static-path-pattern: /static/**
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.leon.wechatrobot.platform.bean
+#  config-location: classpath:mybatis/config/mybatis.xml
+
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+#spring-boot-actuator监控
+management:
+  endpoint:
+    info:
+      enabled: true
+    beans:
+      enabled: true
+    conditions:
+      enabled: true
+  endpoints:  #值得注意的是两个endpoint并不能合并,合并之后就不能访问/actuator/beans了
+    web:
+      exposure:
+        include: ["info", "beans", "conditions"]
