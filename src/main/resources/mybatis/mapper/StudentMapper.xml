@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generatortest.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.leon.wechatrobot.platform.bean.Student">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="studentNo" jdbcType="VARCHAR" property="studentno" />
+    <result column="studentName" jdbcType="VARCHAR" property="studentname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="article_num" jdbcType="INTEGER" property="articleNum" />
+    <result column="scan_num" jdbcType="INTEGER" property="scanNum" />
+    <result column="review_num" jdbcType="INTEGER" property="reviewNum" />
+    <result column="classes" jdbcType="VARCHAR" property="classes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, studentNo, studentName, password, email, phone, article_num, scan_num, review_num, 
+    classes
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.leon.wechatrobot.platform.bean.Student">
+    insert into student (id, studentNo, studentName, 
+      password, email, phone, 
+      article_num, scan_num, review_num, 
+      classes)
+    values (#{id,jdbcType=INTEGER}, #{studentno,jdbcType=VARCHAR}, #{studentname,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{articleNum,jdbcType=INTEGER}, #{scanNum,jdbcType=INTEGER}, #{reviewNum,jdbcType=INTEGER}, 
+      #{classes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.leon.wechatrobot.platform.bean.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="studentno != null">
+        studentNo,
+      </if>
+      <if test="studentname != null">
+        studentName,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="articleNum != null">
+        article_num,
+      </if>
+      <if test="scanNum != null">
+        scan_num,
+      </if>
+      <if test="reviewNum != null">
+        review_num,
+      </if>
+      <if test="classes != null">
+        classes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentno != null">
+        #{studentno,jdbcType=VARCHAR},
+      </if>
+      <if test="studentname != null">
+        #{studentname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="articleNum != null">
+        #{articleNum,jdbcType=INTEGER},
+      </if>
+      <if test="scanNum != null">
+        #{scanNum,jdbcType=INTEGER},
+      </if>
+      <if test="reviewNum != null">
+        #{reviewNum,jdbcType=INTEGER},
+      </if>
+      <if test="classes != null">
+        #{classes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.leon.wechatrobot.platform.bean.Student">
+    update student
+    <set>
+      <if test="studentno != null">
+        studentNo = #{studentno,jdbcType=VARCHAR},
+      </if>
+      <if test="studentname != null">
+        studentName = #{studentname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="articleNum != null">
+        article_num = #{articleNum,jdbcType=INTEGER},
+      </if>
+      <if test="scanNum != null">
+        scan_num = #{scanNum,jdbcType=INTEGER},
+      </if>
+      <if test="reviewNum != null">
+        review_num = #{reviewNum,jdbcType=INTEGER},
+      </if>
+      <if test="classes != null">
+        classes = #{classes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.leon.wechatrobot.platform.bean.Student">
+    update student
+    set studentNo = #{studentno,jdbcType=VARCHAR},
+      studentName = #{studentname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      article_num = #{articleNum,jdbcType=INTEGER},
+      scan_num = #{scanNum,jdbcType=INTEGER},
+      review_num = #{reviewNum,jdbcType=INTEGER},
+      classes = #{classes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
